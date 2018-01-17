@@ -52,17 +52,16 @@ class Blockchain(object):
     
     def valid_chain(self, chain):
         """
-        Determine if a given blockchain is valid
+        Determine if a given blockchain is valid. Traverse the whole chain, 
+        for each block, verify the 'previous_hash" is equal to the calculate 
+        hash of last_block. If they don't match, return False.
+        Then verify the proof of work is correct. Run valid_proof against 
+        current block and last block's proof
 
         :param chain: A blockchain
         :return: True if valid, False if not
         """
-        # Traverse the whole chain, for each block, verify the
-        # 'previous_hash" is equal to the calculate hash of last_block
-        # If they don't match, return False
-        #
-        # Then verify the proof of work is correct
-        # Run valid_proof against current block and last block's proof
+        pass
 
     def resolve_conflict(self):
         """
