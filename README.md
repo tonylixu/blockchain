@@ -35,4 +35,6 @@ block = {
   * Calculate the PoW
   * Reward the miner (In our case 4 coins)
   * Create the new block and add current transactions
-  * Append the new block to the existing block chain 
+  * Append the new block to the existing block chain
+
+* Consensus: Since Blockchain is decentralized, how do we ensure that every node refelcts the same chain? This is called "The problem of Consensus". This problem occurs when one node has different chain to another node. In our code, we use the rule of "the longest valid chain is authoritative". The node that contains the longest chain on the blockchain network is the valid one.
