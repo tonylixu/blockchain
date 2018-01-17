@@ -31,3 +31,8 @@ block = {
  "amount": 3
 }
 ```
+* Mining: Mining is the process of collecting new transactions, add new transactions into a new block, append the new block into the existing chain:
+  * Calculate the PoW
+  * Reward the miner (In our case 4 coins)
+  * Create the new block and add current transactions
+  * Append the new block to the existing block chain 
