@@ -18,3 +18,15 @@ block = {
     'previous_hash': 'string - the hash string of previous block',
 }
 ```
+* Transaction: A transaction is a piece of information that contians at lest:
+  * An input/sender address: Which address was used to send the coins.
+  * An amount: The amount of bitcoins that will be sent.
+  * An output/receiver address: The receiver's address.
+```python
+# Sample transaction
+{
+ "sender": "d4ee26eee15148eefdsafdsafdsaf",
+ "recipient": "fdsaf87687dsafdsaf6876fdsa",
+ "amount": 3
+}
+```
