@@ -34,9 +34,21 @@ class Blockchain(object):
         """
         pass
     
-    def new_transaction(self):
-        # Adds a new transaction to the list of transactions
+    def new_transaction(self, sender, recipient, amount):
+        """
+        Create a new transaction to go into the next mined Block. New
+        transaction will be appended to self.current_transactions
+
+        :param sender: Address of the Sender
+        :param recipient: Address of the Recipient
+        :param amount: Amount
+        :return: The index of the Block that will hold this transaction
+        """
         pass
+
+    @property
+    def last_block(self):
+        return self.chain[-1]
     
     def valid_chain(self, chain):
         """
