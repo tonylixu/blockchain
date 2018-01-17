@@ -24,7 +24,8 @@ class Blockchain(object):
             - A block contains the following elements:
         block= {
             'index': Integer, the length of block chain + 1, Eg. 10
-            'timestamp': time in seconds since the epoch
+                The genesis block index is of course 1.
+            'timestamp': time in seconds since the epoch when new block is created
             'transactions': Current transactions in this block, 0 for new block
             'proof': proof,
             'previous_hash': hash of the previous block
