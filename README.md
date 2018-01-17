@@ -18,6 +18,7 @@ block = {
     'previous_hash': 'string - the hash string of previous block',
 }
 ```
+* Proof of Work: PoW is basically how new blocks are `mined` on the blockchain. In our implementation, the goal of PoW is to discover a number which solves a problem. We define the mathmatical problem as: The hash string of the last proof (from last block) and the new proof contains `4` leading `0`s. `sha256(last_proof+proof)[:4] == 0000`. This new `proof` number must be difficult to calculate but easy to verify.
 * Transaction: A transaction is a piece of information that contians at lest:
   * An input/sender address: Which address was used to send the coins.
   * An amount: The amount of bitcoins that will be sent.
