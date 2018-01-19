@@ -3,7 +3,11 @@ A Python implementation of Blockchain. You will need some certain amount of basi
 
 ### Goal
 The goal of this project, is to implement the basics of a Blockchain into a Python web application. Flask-0.12.2+ will be used as API backend to serve REST API calls. When you run this Python application, you should be able to do:
-
+* Mining - To tell the server to mine a new block
+* Transaction - To create a new transaction to be added to a block
+* Chain - To check the full Blockchain
+* Register - To accept a list of new nodes
+* Resolve - To use our own Consensus algorithm to resolve conflicts.
 
 ### Prerequisite
 * Python3.6+
