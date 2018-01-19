@@ -1,6 +1,10 @@
 ## Implement Your Own Blockchain
 A Python implementation of Blockchain. You will need some certain amount of basic knowledge about Blockchain in order to understand the source code. To get the app running, you also need Python3.6 knowledge, Flask (A Python framework) and some basic REST API experiences.
 
+### Goal
+The goal of this project, is to implement the basics of a Blockchain into a Python web application. Flask-0.12.2+ will be used as API backend to serve REST API calls. When you run this Python application, you should be able to do:
+
+
 ### Prerequisite
 * Python3.6+
 * Flask0.12.2+
