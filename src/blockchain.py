@@ -1,3 +1,5 @@
+from transaction import Transaction
+
 class Blockchain(object):
     def __init__(self):
         self.chain = []
@@ -53,7 +55,14 @@ class Blockchain(object):
         :param amount: Amount
         :return: The index of the Block that will hold this transaction
         """
-        pass
+        tran = Transaction(sender, recipient, amount)
+        self.current_transactions.append(tran)
+        # TODO: 
+        #   Check if chain is zero    
+        #   Chcek if block size limit before use the last block
+        idx_dest_block = len(self.chain) - 1
+        return idx_dest_block
+
 
     @property
     def last_block(self):
