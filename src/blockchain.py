@@ -4,7 +4,7 @@ class Blockchain(object):
         self.current_transactions = []
         self.nodes = set()  # A set store all the nodes
 
-    def register_nore(self, address):
+    def register_node(self, address):
         """
         Add a new node to the list of nodes.
         How to implement:
