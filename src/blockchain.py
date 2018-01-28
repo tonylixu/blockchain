@@ -84,16 +84,17 @@ class Blockchain(object):
 
     @staticmethod
     def hash(block):
-        """
-        Create a SHA-256 hash of block. 
-        How to implement:
-            - You can sort the block (which is a dictionary), 
-                then dump into a JSON format, run the hashlib.sha256()
-                function
+         """
+         Creates SHA256 hash of a block
+         Params
+         block: dict
 
-        :param block: Block
-        """
-        pass
+         Return: string
+         """
+
+         # To have a consistent hash value, make sure that the dictionary is ordered
+         json_str = json.dumps(block, sort_keys = True).encode()
+         return hashlib.sha256(json_str).hexdigest()
 
     def proof_of_work(slef, last_proof):
         """
