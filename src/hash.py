@@ -10,6 +10,7 @@ def hash(block):
     Return: string
     """
 
+    # To have a consistent hash value, make sure that the dictionary is ordered    
     json_str = json.dumps(block, sort_keys = True).encode()
     return hashlib.sha256(json_str).hexdigest()
              
