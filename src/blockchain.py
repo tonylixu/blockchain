@@ -1,3 +1,5 @@
+import block
+import datetime
 class Blockchain(object):
     def __init__(self):
         self.chain = []
@@ -35,7 +37,16 @@ class Blockchain(object):
         :param previous_hash: Hash of previous Block
         :return: New Block
         """
-        pass
+        """
+        
+        """
+        index = len(self.chain)
+        block = Block()
+        if valid_proof(previous_hash, proof):
+            block.index = index
+            block.proof = proof
+            block.previous_proof = previous_hash
+            return block
     
     def new_transaction(self, sender, recipient, amount):
         """
