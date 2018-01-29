@@ -1,3 +1,6 @@
+import hashlib
+import json
+
 class Blockchain(object):
     def __init__(self):
         self.chain = []
@@ -84,19 +87,18 @@ class Blockchain(object):
 
     @staticmethod
     def hash(block):
-         """
-         Creates SHA256 hash of a block
-         Params
-         block: dict
+        """
+        Creates SHA256 hash of a block
+         
+        :param block: A Python dict
+        :return: string
+        """
 
-         Return: string
-         """
+        # To have a consistent hash value, make sure that the dictionary is ordered
+        json_str = json.dumps(block, sort_keys = True).encode()
+        return hashlib.sha256(json_str).hexdigest()
 
-         # To have a consistent hash value, make sure that the dictionary is ordered
-         json_str = json.dumps(block, sort_keys = True).encode()
-         return hashlib.sha256(json_str).hexdigest()
-
-    def proof_of_work(slef, last_proof):
+    def proof_of_work(self, last_proof):
         """
         Simple Proof of Work Algorithm:
             - Find a number p2 such that hash(p1p2) contains leading 4 zeroes
