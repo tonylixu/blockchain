@@ -17,6 +17,8 @@ class Blockchain(object):
         :param address: Address of node. Eg. 'http://192.168.0.1:5000'
         :return None
         """
+        # You could use urlparse method from urllib.parse
+        # A node is just a string in format of 'IP:port'
         pass
 
 
