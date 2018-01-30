@@ -1,5 +1,10 @@
-import block
 import datetime
+import hashlib
+import json
+
+import block
+
+
 class Blockchain(object):
     def __init__(self):
         self.chain = []
@@ -16,6 +21,8 @@ class Blockchain(object):
         :param address: Address of node. Eg. 'http://192.168.0.1:5000'
         :return None
         """
+        # You could use urlparse method from urllib.parse
+        # A node is just a string in format of 'IP:port'
         pass
 
 
@@ -100,17 +107,17 @@ class Blockchain(object):
     @staticmethod
     def hash(block):
         """
-        Create a SHA-256 hash of block. 
-        How to implement:
-            - You can sort the block (which is a dictionary), 
-                then dump into a JSON format, run the hashlib.sha256()
-                function
-
-        :param block: Block
+        Creates SHA256 hash of a block
+         
+        :param block: A Python dict
+        :return: string
         """
-        pass
 
-    def proof_of_work(slef, last_proof):
+        # To have a consistent hash value, make sure that the dictionary is ordered
+        json_str = json.dumps(block, sort_keys = True).encode()
+        return hashlib.sha256(json_str).hexdigest()
+
+    def proof_of_work(self, last_proof):
         """
         Simple Proof of Work Algorithm:
             - Find a number p2 such that hash(p1p2) contains leading 4 zeroes
