@@ -40,12 +40,16 @@ class Blockchain(object):
         """
         
         """
-        index = len(self.chain)
+        new_index = len(self.chain) + 1
         block = Block()
         if valid_proof(previous_hash, proof):
-            block.index = index
+            block.index = new_index
             block.proof = proof
             block.previous_proof = previous_hash
+            # Append the current block to blockchain
+            self.chain.append(self.current_transactions)
+            # reset the current blockchain.
+            self.current_transactions = []
             return block
     
     def new_transaction(self, sender, recipient, amount):
