@@ -1,10 +1,12 @@
+import block
+import datetime
 class Blockchain(object):
     def __init__(self):
         self.chain = []
         self.current_transactions = []
         self.nodes = set()  # A set store all the nodes
 
-    def register_nore(self, address):
+    def register_node(self, address):
         """
         Add a new node to the list of nodes.
         How to implement:
@@ -35,7 +37,20 @@ class Blockchain(object):
         :param previous_hash: Hash of previous Block
         :return: New Block
         """
-        pass
+        """
+        
+        """
+        new_index = len(self.chain) + 1
+        block = Block()
+        if valid_proof(previous_hash, proof):
+            block.index = new_index
+            block.proof = proof
+            block.previous_proof = previous_hash
+            # Append the current block to blockchain
+            self.chain.append(self.current_transactions)
+            # reset the current blockchain.
+            self.current_transactions = []
+            return block
     
     def new_transaction(self, sender, recipient, amount):
         """
