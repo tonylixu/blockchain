@@ -49,7 +49,7 @@ class Blockchain(object):
             # Append the current block to blockchain
             self.chain.append(self.current_transactions)
             # reset the current blockchain.
-            self.current_transactions = []
+            self.current_transactions = block
             return block
     
     def new_transaction(self, sender, recipient, amount):
