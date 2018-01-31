@@ -104,12 +104,14 @@ class Blockchain(object):
         """
         Simple Proof of Work Algorithm:
             - Find a number p2 such that hash(p1p2) contains leading 4 zeroes
-            - p1 is the previous proof, p2 is the new proof
+            - p1 is the previous proof (last_proof), p2 is the new proof
             - You can call the valid_proof method
+
         :param last_proof: previous proof
         :return: proof
         """
     
+    @staticmethod
     def valid_proof(last_proof, proof):
         """
         Validates the Proof.
@@ -122,4 +124,14 @@ class Blockchain(object):
         :param proof: Current Proof
         :return: True if correct, False if not.
         """
-        pass
+        combined_str = '{}{}'.format(last_proof, proof)
+        # Encode combined string into a bytes object, default encoding
+        # is 'utf-8'
+        encode_combined_str = combined_str.encode()
+        # Now we calculate the hash
+        hash_str = hashlib.sha256(encode_combined_str).hexdigest()
+        # If the first 4 digits of hash_str are '0000', we found a proof
+        if hash_str[:4] == '0000':
+            return True
+        else:
+            return False
