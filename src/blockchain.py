@@ -47,9 +47,9 @@ class Blockchain(object):
         """
         
         """
-        new_index = len(self.chain) + 1
-        block = Block()
         if valid_proof(previous_hash, proof):
+            new_index = len(self.chain) + 1
+            block = Block()
             block.index = new_index
             block.proof = proof
             block.previous_proof = previous_hash

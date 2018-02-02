@@ -7,4 +7,3 @@ class Block(object):
         self.transactions = 0
         self.proof = None
         self.previous_proof= None
-        
