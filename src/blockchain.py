@@ -52,8 +52,8 @@ class Blockchain(object):
             block = Block()
             block.index = len( self.chain ) + 1
             block.proof = proof
-            block.previous_block_hash = previous_hash
-            
+            block.previous_blocks_hash = previous_hash
+
             # Append the current block to blockchain
             self.chain.append( block )
             
