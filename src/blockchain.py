@@ -2,9 +2,6 @@ import datetime
 import hashlib
 import json
 
-import block
-
-
 class Blockchain(object):
     def __init__(self):
         self.chain = []
@@ -48,16 +45,20 @@ class Blockchain(object):
         
         """
         if valid_proof(previous_hash, proof):
-            new_index = len(self.chain) + 1
+            # add transactions to previous block
+            self.chain[ len( self.chain ) - 1 ].transactions.append( self.current_transactions )
+
+            # initialize new block
             block = Block()
-            block.index = new_index
+            block.index = len( self.chain ) + 1
             block.proof = proof
-            block.previous_proof = previous_hash
+            block.previous_block_hash = previous_hash
+            
             # Append the current block to blockchain
-            self.chain.append(self.current_transactions)
+            self.chain.append( block )
+            
             # reset the current blockchain.
-            self.current_transactions = block
-            return block
+            self.current_transactions = []
     
     def new_transaction(self, sender, recipient, amount):
         """
