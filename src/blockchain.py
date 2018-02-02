@@ -52,7 +52,7 @@ class Blockchain(object):
         if valid_proof(previous_hash, proof):
             block.index = new_index
             block.proof = proof
-            block.previous_proof = previous_hash
+            block.previous_blocks_hash = previous_hash
             # Append the current block to blockchain
             self.chain.append(self.current_transactions)
             # reset the current blockchain.
