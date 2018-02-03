@@ -117,26 +117,48 @@ class Blockchain(object):
         json_str = json.dumps(block, sort_keys = True).encode()
         return hashlib.sha256(json_str).hexdigest()
 
-    def proof_of_work(self, last_proof):
+    def proof_of_work(self, last_block):
         """
         Simple Proof of Work Algorithm:
+            - Simplified version of "Hashcash" algorithm
             - Find a number p2 such that hash(p1p2) contains leading 4 zeroes
-            - p1 is the previous proof, p2 is the new proof
+            - p1 is the hash of last_block, p2 is the new proof
             - You can call the valid_proof method
-        :param last_proof: previous proof
+
+        :param last_block: last block
         :return: proof
         """
+        # We define a new proof and start from 0
+        new_proof = 0
+        last_hash = self.hash(last_block)
+
+        # We keep mining until we find a valid hash
+        while self.valid_proof(last_hash, new_proof) is False:
+            new_proof += 1
+        
+        return new_proof
     
-    def valid_proof(last_proof, proof):
+    @staticmethod
+    def valid_proof(str1, str2):
         """
         Validates the Proof.
         How to implement:
-            - Combine last_proof and proof into a string
+            - Combine two given strings into a single string for hashing
             - Calculate the SHA-256 hash of the string
             - If string[:4] == '0000', return True, otherwise return False
 
-        :param last_proof: Previous Proof
-        :param proof: Current Proof
+        :param str1: String number 1
+        :param str2: String number 2
         :return: True if correct, False if not.
         """
-        pass
+        combined_str = '{}{}'.format(str1, str2)
+        # Encode combined string into a bytes object, default encoding
+        # is 'utf-8'
+        encode_combined_str = combined_str.encode()
+        # Now we calculate the hash
+        hash_str = hashlib.sha256(encode_combined_str).hexdigest()
+        # If the first 4 digits of hash_str are '0000', we found a proof
+        if hash_str[:4] == '0000':
+            return True
+        else:
+            return False
