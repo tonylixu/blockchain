@@ -122,7 +122,7 @@ class Blockchain(object):
         return new_proof
     
     @staticmethod
-    def valid_proof(last_hash, proof):
+    def valid_proof(str1, str2):
         """
         Validates the Proof.
         How to implement:
@@ -134,7 +134,7 @@ class Blockchain(object):
         :param proof: Current Proof
         :return: True if correct, False if not.
         """
-        combined_str = '{}{}'.format(last_hash, proof)
+        combined_str = '{}{}'.format(str1, str2)
         # Encode combined string into a bytes object, default encoding
         # is 'utf-8'
         encode_combined_str = combined_str.encode()
