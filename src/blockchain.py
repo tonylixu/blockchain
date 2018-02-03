@@ -126,12 +126,12 @@ class Blockchain(object):
         """
         Validates the Proof.
         How to implement:
-            - Combine last_proof and proof into a string
+            - Combine two given strings into a single string for hashing
             - Calculate the SHA-256 hash of the string
             - If string[:4] == '0000', return True, otherwise return False
 
-        :param last_proof: Previous Proof
-        :param proof: Current Proof
+        :param str1: String number 1
+        :param str2: String number 2
         :return: True if correct, False if not.
         """
         combined_str = '{}{}'.format(str1, str2)
