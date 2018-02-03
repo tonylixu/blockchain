@@ -110,6 +110,14 @@ class Blockchain(object):
         :param last_proof: previous proof
         :return: proof
         """
+        # We define a new proof and start from 0
+        new_proof = 0
+
+        # We keep mining until we find a valid hash
+        while self.valid_proof(last_proof, new_proof) is False:
+            new_proof += 1
+        
+        return new_proof
     
     @staticmethod
     def valid_proof(last_proof, proof):
