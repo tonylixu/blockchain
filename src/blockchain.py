@@ -57,10 +57,7 @@ class Blockchain(object):
         """
         tran = Transaction(sender, recipient, amount)
         self.current_transactions.append(tran)
-        # TODO: 
-        #   Check if chain is zero    
-        #   Chcek if block size limit before use the last block
-        idx_dest_block = len(self.chain) - 1
+        idx_dest_block = len(self.chain)
         return idx_dest_block
 
 
