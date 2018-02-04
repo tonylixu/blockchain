@@ -6,4 +6,4 @@ class Block(object):
         self.time_stamp = datetime.datetime.fromtimestamp().strftime('%Y-%m-%d %H:%M:%S')
         self.transactions = []
         self.proof = None
-        self.previous_block_hash= None
+        self.previous_blocks_hash= None
