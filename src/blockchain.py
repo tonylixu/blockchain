@@ -42,23 +42,22 @@ class Blockchain(object):
         :return: New Block
         """
         """
-        
         """
-        if valid_proof(previous_hash, proof):
-            # add transactions to previous block
-            self.chain[ len( self.chain ) - 1 ].transactions.append( self.current_transactions )
 
-            # initialize new block
-            block = Block()
-            block.index = len( self.chain ) + 1
-            block.proof = proof
-            block.previous_block_hash = previous_hash
+        # initialize new block
+        block = Block()
+        block.index = len( self.chain )
+        block.proof = proof
+        block.previous_block_hash = previous_hash
             
-            # Append the current block to blockchain
-            self.chain.append( block )
-            
-            # reset the current blockchain.
-            self.current_transactions = []
+        # Append the current block to blockchain
+        self.chain.append( block )
+
+        # add transactions to the new block
+        self.chain[ - 1 ].transactions.append( self.current_transactions )    
+        
+        # reset the current block current transaction.
+        self.current_transactions = []
     
     def new_transaction(self, sender, recipient, amount):
         """
