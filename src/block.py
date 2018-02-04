@@ -7,4 +7,3 @@ class Block(object):
         self.transactions = []
         self.proof = None
         self.previous_blocks_hash= None
-        
