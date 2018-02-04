@@ -23,7 +23,8 @@ class Blockchain(object):
         """
         # You could use urlparse method from urllib.parse
         # A node is just a string in format of 'IP:port'
-        pass
+        node = urlparse(address).netloc
+        self.nodes.add(node)
 
 
     def new_block(self, proof, previous_hash):
