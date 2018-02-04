@@ -8,6 +8,9 @@ class Blockchain(object):
         self.current_transactions = []
         self.nodes = set()  # A set store all the nodes
 
+        # Create the genesis block
+        self.new_block(proof=100, previous_hash='0000')
+
     def register_node(self, address):
         """
         Add a new node to the list of nodes.
