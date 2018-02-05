@@ -2,6 +2,10 @@ import datetime
 import hashlib
 import json
 
+import block
+import transaction
+
+
 class Blockchain(object):
     def __init__(self):
         self.chain = []
@@ -80,7 +84,11 @@ class Blockchain(object):
         :param amount: Amount
         :return: The index of the Block that will hold this transaction
         """
-        pass
+        tran = Transaction(sender, recipient, amount)
+        self.current_transactions.append(tran)
+        idx_dest_block = len(self.chain)
+        return idx_dest_block
+
 
     @property
     def last_block(self):
