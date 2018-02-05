@@ -1,0 +1,20 @@
+This document describes what softwares/packages are required to install Flask framework on Linux
+
+1\ virtualenv
+To create a virtual environment.
+A virtual enviornment is a private copy of the Python interpreter onto which you can install packages privately, without affecting the global Python interpreter installed
+in your system.
+Command:
+sudo apt-get install python-virtualenv
+
+2\ pip 
+Required if you created the virtual environment with pyvenv under Python3.3. Under Python3.4, pyvenv installs pip automatically.
+Link:
+https://pip.pypa.io/en/latest/installing/
+Commands:
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+
+3\ Flask
+A small and powerful web framework for Python.
+Command: pip install Flask
