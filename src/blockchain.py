@@ -4,7 +4,7 @@ import json
 
 import block
 import transaction
-
+from urllib.parse import urlparse
 
 class Blockchain(object):
     def __init__(self):
@@ -25,8 +25,6 @@ class Blockchain(object):
         :param address: Address of node. Eg. 'http://192.168.0.1:5000'
         :return None
         """
-        # You could use urlparse method from urllib.parse
-        # A node is just a string in format of 'IP:port'
         node = urlparse(address).netloc
         self.nodes.add(node)
 
