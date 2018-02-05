@@ -12,6 +12,9 @@ class Blockchain(object):
         self.current_transactions = []
         self.nodes = set()  # A set store all the nodes
 
+        # Create the genesis block
+        self.new_block(proof=100, previous_hash='0000')
+
     def register_node(self, address):
         """
         Add a new node to the list of nodes.
@@ -24,7 +27,8 @@ class Blockchain(object):
         """
         # You could use urlparse method from urllib.parse
         # A node is just a string in format of 'IP:port'
-        pass
+        node = urlparse(address).netloc
+        self.nodes.add(node)
 
 
     def new_block(self, proof, previous_hash):
@@ -46,19 +50,23 @@ class Blockchain(object):
         :return: New Block
         """
         """
-        
         """
-        new_index = len(self.chain) + 1
+
+
+        # initialize new block
         block = Block()
-        if valid_proof(previous_hash, proof):
-            block.index = new_index
-            block.proof = proof
-            block.previous_blocks_hash = previous_hash
-            # Append the current block to blockchain
-            self.chain.append(self.current_transactions)
-            # reset the current blockchain.
-            self.current_transactions = block
-            return block
+        block.index = len( self.chain ) + 1
+        block.proof = proof
+        block.previous_blocks_hash = previous_hash
+            
+        # Append the current block to blockchain
+        self.chain.append( block )
+
+        # add transactions to the new block
+        self.chain[ - 1 ].transactions.append( self.current_transactions )    
+        
+        # reset the current block current transaction.
+        self.current_transactions = []
     
     def new_transaction(self, sender, recipient, amount):
         """
