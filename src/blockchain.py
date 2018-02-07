@@ -181,3 +181,11 @@ app = Flask(__name__)
 
 # Instantiate the Blockchain object
 blockchain = Blockchain()
+
+# Create a dummy default end access point
+@app.route("/")
+def hello():
+    return "Welcome to Blockchain app!"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0",debug=True)
