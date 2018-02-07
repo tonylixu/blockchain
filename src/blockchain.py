@@ -1,8 +1,8 @@
+import block
 import datetime
+from flask import Flask
 import hashlib
 import json
-
-import block
 import transaction
 from urllib.parse import urlparse
 
@@ -173,3 +173,11 @@ class Blockchain(object):
             return True
         else:
             return False
+
+# Initialize the Flask application
+# Create the application object as an instance of Flask class
+# which is set to the name of the module
+app = Flask(__name__)
+
+# Instantiate the Blockchain object
+blockchain = Blockchain()
