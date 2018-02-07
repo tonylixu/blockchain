@@ -1,4 +1,4 @@
-import block
+from block import Block
 import datetime
 from flask import Flask
 import hashlib
