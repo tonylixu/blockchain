@@ -1,10 +1,9 @@
 from block import Block
 import datetime
-from flask import Flask
-from flask import jsonify
+from flask import Flask, jsonify, request
 import hashlib
 import json
-import transaction
+from transaction import Transaction
 import jsonpickle
 from urllib.parse import urlparse
 
@@ -211,6 +210,24 @@ def mine():
 
         return jsonify(response), 200
 
+@app.route("/transcations/new", methods=['POST'])
+def new_transcation():
+    required = ['sender', 'recipient', 'amount']
+    # skip the content type requirement by setting froce=True
+    data = request.get_json(force=True)
+
+    if not all(value in data for value in required):
+       return "missing values", 400
+    
+    index = blockchain.new_transaction(data['sender'], data['recipient'], data['amount'])
+
+    response = {
+            'message': f'Transcation will be added to block {index}',
+    }
+
+    return jsonify(response), 200
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
-    #app.run(host="50.116.17.168", port=443, debug=True)
+    #app.run(host="0.0.0.0", debug=True)
+    app.run(host="50.116.17.168", port=443, debug=True)
