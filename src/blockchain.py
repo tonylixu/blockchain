@@ -130,7 +130,7 @@ class Blockchain(object):
 
         # To have a consistent hash value, make sure that the dictionary is ordered
         #json_str = json.dumps(block, sort_keys = True).encode()
-        json_str = jsonpickle.encode(block) 
+        json_str = jsonpickle.encode(block, unpicklable=False) 
         return hashlib.sha256(json_str.encode()).hexdigest()
 
     def proof_of_work(self, last_block):
@@ -213,3 +213,4 @@ def mine():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
+    #app.run(host="50.116.17.168", port=443, debug=True)
