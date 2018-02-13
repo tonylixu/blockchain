@@ -53,15 +53,15 @@ class Blockchain(object):
 
         # initialize new block
         block = Block()
-        block.index = len( self.chain ) + 1
+        block.index = len(self.chain) + 1
         block.proof = proof
         block.previous_blocks_hash = previous_hash
             
         # Append the current block to blockchain
-        self.chain.append( block )
+        self.chain.append(block)
 
         # add transactions to the new block
-        self.chain[ - 1 ].transactions.append( self.current_transactions )    
+        self.chain[-1].transactions.append(self.current_transactions)    
         
         # reset the current block current transaction.
         self.current_transactions = []
