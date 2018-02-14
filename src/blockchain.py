@@ -193,22 +193,22 @@ def hello():
 
 @app.route("/mine", methods=['GET'])
 def mine():
-        last_block = blockchain.last_block
-        last_hash = blockchain.hash(last_block)
-        # calculate proof
-        proof = blockchain.proof_of_work(last_block)
+    last_block = blockchain.last_block
+    last_hash = blockchain.hash(last_block)
+    # calculate proof
+    proof = blockchain.proof_of_work(last_block)
         # create a new block
-        block = blockchain.new_block(proof, last_hash)
+    block = blockchain.new_block(proof, last_hash)
 
-        response = {
-            'message': "New Block Forged",
-            'index': block.index,
-            'transcations': block.transactions,
-            'proof': block.proof,
-            'previous_hash': block.previous_blocks_hash,
-        }
+    response = {
+        'message': "New Block Forged",
+        'index': block.index,
+        'transcations': jsonpickle.encode(block.transactions, unpicklable=False), 
+        'proof': block.proof,
+        'previous_hash': block.previous_blocks_hash,
+    }
 
-        return jsonify(response), 200
+    return jsonify(response), 200
 
 @app.route("/transcations/new", methods=['POST'])
 def new_transcation():
@@ -229,5 +229,5 @@ def new_transcation():
 
 
 if __name__ == "__main__":
-    #app.run(host="0.0.0.0", debug=True)
-    app.run(host="50.116.17.168", port=443, debug=True)
+    app.run(host="0.0.0.0", debug=True)
+    # app.run(host="50.116.17.168", port=443, debug=True)
