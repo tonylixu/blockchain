@@ -1,9 +1,10 @@
 from block import Block
 import datetime
-from flask import Flask
+from flask import Flask, jsonify, request
 import hashlib
 import json
-import transaction
+from transaction import Transaction
+import jsonpickle
 from urllib.parse import urlparse
 
 class Blockchain(object):
@@ -65,6 +66,8 @@ class Blockchain(object):
         
         # reset the current block current transaction.
         self.current_transactions = []
+        
+        return block
     
     def new_transaction(self, sender, recipient, amount):
         """
@@ -120,13 +123,14 @@ class Blockchain(object):
         """
         Creates SHA256 hash of a block
          
-        :param block: A Python dict
+        :param block: Block 
         :return: string
         """
 
         # To have a consistent hash value, make sure that the dictionary is ordered
-        json_str = json.dumps(block, sort_keys = True).encode()
-        return hashlib.sha256(json_str).hexdigest()
+        #json_str = json.dumps(block, sort_keys = True).encode()
+        json_str = jsonpickle.encode(block, unpicklable=False) 
+        return hashlib.sha256(json_str.encode()).hexdigest()
 
     def proof_of_work(self, last_block):
         """
@@ -187,5 +191,43 @@ blockchain = Blockchain()
 def hello():
     return "Welcome to Blockchain app!"
 
+@app.route("/mine", methods=['GET'])
+def mine():
+    last_block = blockchain.last_block
+    last_hash = blockchain.hash(last_block)
+    # calculate proof
+    proof = blockchain.proof_of_work(last_block)
+        # create a new block
+    block = blockchain.new_block(proof, last_hash)
+
+    response = {
+        'message': "New Block Forged",
+        'index': block.index,
+        'transcations': jsonpickle.encode(block.transactions, unpicklable=False), 
+        'proof': block.proof,
+        'previous_hash': block.previous_blocks_hash,
+    }
+
+    return jsonify(response), 200
+
+@app.route("/transcations/new", methods=['POST'])
+def new_transcation():
+    required = ['sender', 'recipient', 'amount']
+    # skip the content type requirement by setting froce=True
+    data = request.get_json(force=True)
+
+    if not all(value in data for value in required):
+       return "missing values", 400
+    
+    index = blockchain.new_transaction(data['sender'], data['recipient'], data['amount'])
+
+    response = {
+            'message': f'Transcation will be added to block {index}',
+    }
+
+    return jsonify(response), 200
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",debug=True)
+    app.run(host="0.0.0.0", debug=True)
+    # app.run(host="50.116.17.168", port=443, debug=True)
