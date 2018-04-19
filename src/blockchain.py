@@ -227,6 +227,13 @@ def new_transcation():
 
     return jsonify(response), 200
 
+@app.route('/chain', methods=['GET'])
+def full_chain():
+    response = {
+        'chain': blockchain.chain,
+        'length': len(blockchain.chain),
+    }
+    return jsonify(response), 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
